@@ -1,1 +1,57 @@
 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="assets/reset.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/style.css">
+
+    <title>Project One</title>
+  </head>
+  <body>
+    <header>
+      <h2>
+        Title
+      </h2>
+      <p>
+        Goal: This is the point of the quiz, this is how we are getting the information.
+      </p>
+      <button id="startQuiz">Start Questionaire</button>
+    </header>
+    </div>
+    <div id=holdQuestions>
+      <h3 id='questionTitle'>
+      </h3>
+      <ol id="exampleList">
+      </ol>
+    </div>
+    <div id="recordScore">
+      <h3>Thank you for answering those questions</h3>
+      <p>Where would you like to go?</p>
+      <form method="POST" id="scoreForm">
+        <label for="enterLocation">Where would you like to go?</label>
+        <input id="enterLocation" type="text" name="text" placeholder="Adelaide">
+        <button id="submitLocation">Submit</button> 
+      </form>
+    </div>
+    <div id="showAnswerStatus">
+      <h4 id="answerStatus">
+      </h4>
+    </div>
+    <div id="highscoreTracker">
+      <section>
+        <h2>
+            Or would you like to go somewhere familiar?
+        </h2>
+        <ol id="prevLocations">
+        </ol>
+        <button id=goBack>Restart</button>
+        <button id=clearLocations>Clear Locations</button>
+      </section>
+    </div>
+    <script src="./assets/script.js"></script>
+  </body>
+</html>
