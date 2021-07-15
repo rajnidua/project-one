@@ -4,10 +4,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link rel="stylesheet" href="assets/reset.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+
     <link rel="stylesheet" href="assets/style.css">
+
 
     <title>Project One</title>
   </head>
@@ -27,21 +27,44 @@
       </h3>
       <ol id="exampleList">
       </ol>
+      <h3>
+          I would like to do something ....
+      </h3>
+      <label class="checkbox" id="activityType">
+        <input type="checkbox">
+        Active
+      </label>
+      <input type="checkbox">
+        Creative
+      </label>
+        <input type="checkbox">
+        Social
+      </label>
     </div>
-    <div id="recordScore">
+   <!------<div id="showAnswerStatus">
+        <h4 id="answerStatus">Okay... how do these options sound?
+        </h4>
+        <label class="checkbox" id="activityExamples">
+            <input type="checkbox">
+            Active
+          </label>
+          <input type="checkbox">
+            Creative
+          </label>
+            <input type="checkbox">
+            Social
+          </label>
+      </div> ----------->
+    <div id="whereToGo">
       <h3>Thank you for answering those questions</h3>
       <p>Where would you like to go?</p>
-      <form method="POST" id="scoreForm">
+      <form method="POST" id="locationPoint">
         <label for="enterLocation">Where would you like to go?</label>
         <input id="enterLocation" type="text" name="text" placeholder="Adelaide">
         <button id="submitLocation">Submit</button> 
       </form>
     </div>
-    <div id="showAnswerStatus">
-      <h4 id="answerStatus">
-      </h4>
-    </div>
-    <div id="highscoreTracker">
+    <div id="prevSearch">
       <section>
         <h2>
             Or would you like to go somewhere familiar?
@@ -52,6 +75,7 @@
         <button id=clearLocations>Clear Locations</button>
       </section>
     </div>
+
     <script src="./assets/script.js"></script>
   </body>
 </html>
