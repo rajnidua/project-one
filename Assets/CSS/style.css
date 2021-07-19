@@ -3,11 +3,21 @@ body {
     color: blanchedalmond;
 }
 
-header{
+.hello{
     text-align: center;
 
 }
 
+
+
+.feelsLike{
+    color: hotpink;
+}
+
 .locationInput{
     color: chartreuse;
+}
+
+.possibleChoices{
+    color: orange;
 }
