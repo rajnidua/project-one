@@ -1,6 +1,11 @@
+
+
 body {
     background-image: linear-gradient( rgb(0, 153, 255) , rgb(0, 47, 255));
     color: blanchedalmond;
+    padding: 15%;
+    padding-top: 50%;
+    padding-bottom: 120%;
 }
 
 .hello{

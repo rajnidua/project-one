@@ -5,24 +5,36 @@ var catActive = "4d4b7105d754a06377d81259"; // Outdoor & Recreation
 var catCreative = "4d4b7104d754a06370d81259" ; // Arts & Entertainment
 var catSocial = "4d4b7105d754a06373d81259,4d4b7105d754a06374d81259,4d4b7105d754a06376d81259";
 var userFormEl = document.querySelector("#locationPoint");
-var imBored = document.querySelector(".imBored");
+var imBored = document.querySelector("#startQuiz");
 var checkboxChoice = document.querySelector("#checkboxChoice");
+var startOver = document.querySelector("#startOver");
 
 imBored.addEventListener("click", function(){
-  event.preventDefault();
-  document.getElementsByClassName("hello").style.display = 'none';
-  document.getElementsByClassName("feelsLike").style.display = 'block';
+ // event.preventDefault();
+  document.body.children[0].style.display = 'none';
+  document.body.children[1].style.display = 'block';
 })
 
 checkboxChoice.addEventListener("click", function(){
   event.preventDefault();
-  document.getElementsByClassName("feelsLike").style.display = 'none';
-  document.getElementsByClassName("locationInput").style.display = 'block';
-  document.getElementById("prevSearch").style.display= 'block';
+  document.body.children[1].style.display = 'none';
+  document.body.children[2].style.display = 'block';
+  document.body.children[4].style.display = 'block';
 } )
+
+startOver.addEventListener("click", function(){
+  event.preventDefault();
+  document.body.children[0].style.display = 'block';
+  document.body.children[3].style.display = 'none';
+  document.body.children[5].style.display = 'none';
+})
 
 var formSubmitHandler = function (event) {
       event.preventDefault();
+      document.body.children[2].style.display = 'none';
+      document.body.children[4].style.display = 'none';
+      document.body.children[3].style.display = 'block';
+      document.body.children[5].style.display = 'block';
       var paramLoc = document.getElementById("enterLocation").value.trim();
       // var listOfOldSearches = [];
       // listOfOldSearches = listOfOldSearches + paramLoc;
