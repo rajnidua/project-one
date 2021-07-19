@@ -5,19 +5,33 @@ body {
 
 .hello{
     text-align: center;
-
+    display: block;
 }
-
-
 
 .feelsLike{
     color: hotpink;
+    display: none;
 }
 
 .locationInput{
     color: chartreuse;
+    display: none;
+
 }
 
 .possibleChoices{
     color: orange;
+    display: none;
+
+}
+
+#prevSearch{
+    color: violet;
+    display: none;
+}
+
+.restart{
+    color: yellow;
+    display: none;
+
 }
