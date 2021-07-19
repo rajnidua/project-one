@@ -2,3 +2,12 @@ body {
     background-image: linear-gradient( rgb(0, 153, 255) , rgb(0, 47, 255));
     color: blanchedalmond;
 }
+
+header{
+    text-align: center;
+
+}
+
+.locationInput{
+    color: chartreuse;
+}

@@ -76,8 +76,11 @@ function getApi(paramLoc) {
               liAddress.appendChild(addressListContainer);
               listContainer.appendChild(liAddress);         
             } 
-          renderResultsName.appendChild(listContainer);
-        }
+         // renderResultsName.appendChild(listContainer);
+         contentTable.appendChild(listContainer);
+
+        } renderResultsName.appendChild(contentTable);
+
       });
   }
   
