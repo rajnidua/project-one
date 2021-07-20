@@ -12,17 +12,17 @@
     <title>Project One</title>
   </head>
   <body>
-    <header>
+    <header class="hello">
       <h2>
-        Title
+        Hello!
       </h2>
       <p>
-        Goal: This is the point of the quiz, this is how we are getting the information.
+        How are you feeling today?
       </p>
-      <button id="startQuiz">Start Questionaire</button>
+      <button class="imBored" id="startQuiz">I'm bored</button>
     </header>
     </div>
-    <div id=holdQuestions>
+    <div class="feelsLike" id=holdQuestions>
       <h3 id='questionTitle'>
       </h3>
       <ol id="exampleList">
@@ -40,6 +40,7 @@
         <input type="checkbox" id="chkSocial">
         Social
       </label>
+      <button class="button is-primary is-rounded" id="checkboxChoice">Yeah!</button>
     </div>
    <!------<div id="showAnswerStatus">
         <h4 id="answerStatus">Okay... how do these options sound?
@@ -55,16 +56,15 @@
             Social
           </label>
       </div> ----------->
-    <div id="whereToGo">
+    <div class="locationInput" id="whereToGo">
       <h3>Thank you for answering those questions</h3>
-      <p>Where would you like to go?</p>
       <form method="POST" id="locationPoint">
         <label for="enterLocation">Where would you like to go?</label>
         <input id="enterLocation" type="text" name="text" placeholder="Adelaide">
         <button class="button is-primary is-rounded" id="submitLocation">Submit</button> 
       </form>
     </div>
-    <div id="result-container-name"></div>
+    <div class="possibleChoices" id="result-container-name"></div>
     <div id="prevSearch">
       <section>
         <h2>

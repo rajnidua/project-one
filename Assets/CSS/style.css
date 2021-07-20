@@ -2,3 +2,22 @@ body {
     background-image: linear-gradient( rgb(0, 153, 255) , rgb(0, 47, 255));
     color: blanchedalmond;
 }
+
+.hello{
+    text-align: center;
+
+}
+
+
+
+.feelsLike{
+    color: hotpink;
+}
+
+.locationInput{
+    color: chartreuse;
+}
+
+.possibleChoices{
+    color: orange;
+}
