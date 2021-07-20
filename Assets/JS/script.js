@@ -49,6 +49,7 @@ function getApi(paramLoc) {
         var numberOfPlaces = data.response.groups[0].items.length;
         var nameArray = [];
         var addressArray=[] ;
+        var imageArray=[];
         var contentTable = document.createElement('table');
         console.log(numberOfPlaces);
           for(var i=0;i<numberOfPlaces;i++){
@@ -56,6 +57,15 @@ function getApi(paramLoc) {
             nameArray[i] = data.response.groups[0].items[i].venue.name;
             var liName = document.createElement('td');
             liName.textContent = nameArray[i];
+            liName.setAttribute("class","row-btn");
+            liName.setAttribute("id",i);
+            var myLatitude = data.response.groups[0].items[i].venue.location.lat;
+            var myLongitude = data.response.groups[0].items[i].venue.location.lng;
+            
+            liName.setAttribute("data-latitude", myLatitude);
+            liName.setAttribute("data-longitude", myLongitude);
+            console.log("latitude is "+liName.dataset.latitude);
+            console.log("longitude is  "+liName.dataset.longitude);
             listContainer.appendChild(liName);
             console.log("addressfor"+i+ data.response.groups[0].items[i].venue.location.formattedAddress[0]) ; 
             var addressListContainer = document.createElement('ul');
@@ -73,13 +83,75 @@ function getApi(paramLoc) {
               listAddress.textContent = data.response.groups[0].items[i].venue.location.formattedAddress[j];
               addressListContainer.appendChild(listAddress);
               var liAddress = document.createElement('td');
+              listAddress.setAttribute("class","row-btn");
+              listAddress.setAttribute("id",i);
               liAddress.appendChild(addressListContainer);
               listContainer.appendChild(liAddress);         
             } 
-          renderResultsName.appendChild(listContainer);
-        }
+            /* var liImage = document.createElement('img');
+            var imageSrc = "https://www.google.com/search?q=St+James%27s+Park";
+            liImage.setAttribute("src",imageSrc);
+            liImage.setAttribute("alt","Image of St James Park");
+            listContainer.appendChild(liImage); */
+            //getThePhoto( nameArray[i]);
+            var liImage = document.createElement('p');
+            liImage.setAttribute("class","fas fa-mug-hot");
+            listContainer.appendChild(liImage);
+            contentTable.appendChild(listContainer);
+          //renderResultsName.appendChild(listContainer);
+        }renderResultsName.appendChild(contentTable);
       });
   }
-  
+
+
+  function getThePhoto(placeName){
+    accessKey: 'MY_ACCESS_KEY';
+      var apiUrl =  fetch('https://api.unsplash.com/photos/?client_id=' + accessKey);
+      fetch(apiUrl)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        //looping over the fetch response and inserting the URL of your repos into a list
+        console.log(data);
+       // return data;
+  })
+}
+
+
+document.addEventListener('click', function (event) {
+  // If the clicked element doesn't have the right selector, bail
+ if (!event.target.matches('.row-btn')) return;
+ // Don't follow the link
+ console.log("I am not clicked");
+ event.preventDefault();
+ console.log("I am clicked");
+ // Log the clicked element in the console
+ console.log(event.target); 
+ console.log(event.target.id);
+ event.target.parentNode.setAttribute("style","background-color:purple;");
+ var targetLatitude = event.target.dataset.latitude;
+ var targetLongitude = event.target.dataset.longitude;
+ console.log("The latitude for this place is "+targetLatitude);
+ getWeatherInfo(targetLatitude,targetLongitude);
+ }, false);
+
+ 
+function getWeatherInfo(targetLatitude,targetLongitude){
+  var myforecastapiUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat='+targetLatitude+'&lon='+targetLongitude+'&cnt='+1 +  '&appid=fabc0f3ee2df47776dc03eed2998269f';
+  fetch(myforecastapiUrl).then(function (response) {
+    if (response.ok) {
+      response.json().then(function (data) {
+          console.log(data);
+          var currentImageIcon = document.createElement('img');
+          var makeImageIcon = data.current.weather[0].main;
+          console.log("The weather main is "+makeImageIcon);
+          currentImageIcon.setAttribute("class",makeImageIcon);
+      })
+    }
+  })
+}
+
+
  
 userFormEl.addEventListener('submit', formSubmitHandler);
