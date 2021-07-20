@@ -1,23 +1,79 @@
+html { 
+    background: url(images/bg.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
 body {
     background-image: linear-gradient( rgb(0, 153, 255) , rgb(0, 47, 255));
     color: blanchedalmond;
+    padding: 15%;
+    padding-top: 50%;
+    padding-bottom: 120%;
 }
 
 .hello{
     text-align: center;
-
+    display: block;
 }
 
-
-
 .feelsLike{
-    color: hotpink;
+    display: none;
 }
 
 .locationInput{
-    color: chartreuse;
+    display: none;
+
 }
 
 .possibleChoices{
-    color: orange;
+    display: none;
+
+}
+
+#prevSearch{
+    display: none;
+}
+
+.restart{
+    display: none;
+
+}
+
+.Thunderstorm{
+    background-image: url("");
+    background-size: cover;
+    background-position: center;
+}
+
+.Drizzle{
+    background-image: url("");
+    background-size: cover;
+    background-position: center;
+}
+
+.Rain{
+    background-image: url("");
+    background-size: cover;
+    background-position: center;
+}
+
+.Snow{
+    background-image: url("");
+    background-size: cover;
+    background-position: center;
+}
+
+.Clear{
+    background-image: url("");
+    background-size: cover;
+    background-position: center;
+}
+
+.Clouds{
+    background-image: url("");
+    background-size: cover;
+    background-position: center;
 }
