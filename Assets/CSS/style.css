@@ -35,3 +35,39 @@ body {
     display: none;
 
 }
+
+.Thunderstorm{
+    background-image: url("");
+    background-size: cover;
+    background-position: center;
+}
+
+.Drizzle{
+    background-image: url("");
+    background-size: cover;
+    background-position: center;
+}
+
+.Rain{
+    background-image: url("");
+    background-size: cover;
+    background-position: center;
+}
+
+.Snow{
+    background-image: url("");
+    background-size: cover;
+    background-position: center;
+}
+
+.Clear{
+    background-image: url("");
+    background-size: cover;
+    background-position: center;
+}
+
+.Clouds{
+    background-image: url("");
+    background-size: cover;
+    background-position: center;
+}
