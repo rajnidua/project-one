@@ -53,6 +53,12 @@ td {
     display: none;
 }
 
+.checkbox:hover, .radio:hover {
+    color: white;
+}
+
+
+
 .locationInput{
     text-align: center;
 
@@ -70,6 +76,10 @@ td {
 #prevSearch{
     text-align: center;
 
+    display: none;
+}
+
+#clearPreviousChoice{
     display: none;
 }
 

@@ -14,6 +14,7 @@ var startOver = document.querySelector("#startOver");
 //var storedLocation = [];
 //var storedLocation = localStorage.getItem("stored_locations")
 var localStoredLocation = 'stored_locations';
+var showCount = 0;
 
 imBored.addEventListener("click", function(){
  // event.preventDefault();
@@ -23,10 +24,15 @@ imBored.addEventListener("click", function(){
 
 checkboxChoice.addEventListener("click", function(event){
   event.preventDefault();
-  document.body.children[1].children[9].children[0].remove();
+  //document.body.children[1].children[9].children[0].remove();
+  document.getElementById("clearPreviousChoice").style.display = "none";
   document.body.children[1].style.display = 'none';
   document.body.children[2].style.display = 'block';
   document.body.children[4].style.display = 'block';
+    if (showCount ===1){
+      document.body.children[1].children[7].children[0].remove();
+      showCount = 0;
+    }
 } )
 
 startOver.addEventListener("click", function(event){
@@ -200,6 +206,8 @@ document.addEventListener("click",function(event){
 
 document.getElementById('previousChoice').addEventListener("click",function(){
   // window.alert("prevous search clicked");
+  showCount = showCount + 1;
+  document.getElementById("clearPreviousChoice").style.display = "inline-flex";
   var myStoredLocation = JSON.parse(localStorage.getItem(localStoredLocation));
   if(myStoredLocation === null) {return;}
   else{
