@@ -1,17 +1,34 @@
 html { 
+<<<<<<< HEAD
+        background-image: linear-gradient( rgb(0, 153, 255) , rgb(0, 47, 255)); 
+       /* background: url(ClearImg.jpg) no-repeat center center fixed; */
+    /*    background: url(./../IMAGES/ClearImg.jpg) no-repeat center center fixed; */
+
+=======
     background: url(../IMAGES/ClearImg.jpg) no-repeat center center fixed; 
+>>>>>>> bbd0cd844176a6337ebd50be4dd78c1afbdb4bd7
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    min-height: 100%;
+    min-width: 1024px;
+      
+    width: 100%;
+    height: auto;
+      
+    top: 0;
+    left: 0;
   }
 
 body {
-    background-image: linear-gradient( rgb(0, 153, 255) , rgb(0, 47, 255));
-    color: blanchedalmond;
-    padding: 15%;
-    padding-top: 50%;
-    padding-bottom: 120%;
+    background-color: whitesmoke; 
+    color: rgb(0, 132, 255);
+    padding: 5%;
+    margin: 10%;
+    border-radius: 15px;
+   /* padding-top: 50%;
+    padding-bottom: 120%; */
 }
 
 .hello{
@@ -20,60 +37,106 @@ body {
 }
 
 .feelsLike{
+    text-align: center;
+
     display: none;
 }
 
 .locationInput{
+    text-align: center;
+
     display: none;
 
 }
 
 .possibleChoices{
+    text-align: center;
+
     display: none;
 
 }
 
 #prevSearch{
+    text-align: center;
+
     display: none;
 }
 
 .restart{
+    text-align: center;
+
     display: none;
 
 }
 
 .Thunderstorm{
     background-image: url("");
-    background-size: cover;
-    background-position: center;
+    min-height: 100%;
+    min-width: 1024px;
+      
+    width: 100%;
+    height: auto;
+      
+    top: 0;
+    left: 0;
 }
 
 .Drizzle{
     background-image: url("");
-    background-size: cover;
-    background-position: center;
+    min-height: 100%;
+    min-width: 1024px;
+      
+    width: 100%;
+    height: auto;
+      
+    top: 0;
+    left: 0;
 }
 
 .Rain{
     background-image: url("");
-    background-size: cover;
-    background-position: center;
+    min-height: 100%;
+    min-width: 1024px;
+      
+    width: 100%;
+    height: auto;
+      
+    top: 0;
+    left: 0;
 }
 
 .Snow{
     background-image: url("");
-    background-size: cover;
-    background-position: center;
+    min-height: 100%;
+    min-width: 1024px;
+      
+    width: 100%;
+    height: auto;
+      
+    top: 0;
+    left: 0;
 }
 
 .Clear{
     background-image: url("");
-    background-size: cover;
-    background-position: center;
+    min-height: 100%;
+    min-width: 1024px;
+      
+    width: 100%;
+    height: auto;
+      
+    top: 0;
+    left: 0;
 }
 
 .Clouds{
     background-image: url("");
-    background-size: cover;
-    background-position: center;
+    min-height: 100%;
+    min-width: 1024px;
+      
+    width: 100%;
+    height: auto;
+      
+    top: 0;
+    left: 0;
 }
