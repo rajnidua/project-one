@@ -18,8 +18,8 @@ html {
   }
 
 body {
-    background-color: black; 
-    color: rgb(0, 132, 255);
+    background-image: linear-gradient( rgb(0, 153, 255) , rgb(0, 47, 255)); 
+    color: white;
     padding: 5%;
     margin: 10%;
     border-radius: 15px;
@@ -70,7 +70,7 @@ td {
 }
 
 .Thunderstorm{
-    background-image: url("");
+    background-image: url(./../IMAGES/Thunderstorm.jpg);
     min-height: 100%;
     min-width: 1024px;
       
@@ -82,7 +82,7 @@ td {
 }
 
 .Drizzle{
-    background-image: url("");
+    background-image: url(./../IMAGES/Drizzle.jpg);
     min-height: 100%;
     min-width: 1024px;
       
@@ -94,7 +94,7 @@ td {
 }
 
 .Rain{
-    background-image: url("");
+    background-image: url(./../IMAGES/Rain.jpg);
     min-height: 100%;
     min-width: 1024px;
       
@@ -106,7 +106,7 @@ td {
 }
 
 .Snow{
-    background-image: url("");
+    background-image: url(./../IMAGES/Snow.jpg);
     min-height: 100%;
     min-width: 1024px;
       
