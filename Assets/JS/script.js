@@ -175,12 +175,6 @@ document.addEventListener("click",function(event){
     }
 
     
-<<<<<<< HEAD
-    localStorage.setItem(localStoredLocation, JSON.stringify(storedLocation));
-    return null;
-  }  */
-  var storedLocation = localStorage.getItem(localStoredLocation);
-=======
     else {
     for(var i = 0; i < storedLocation.length; i++){
    if (storedLocation[i].name === currentLocation.name &&
@@ -189,7 +183,6 @@ document.addEventListener("click",function(event){
     storedLocation[i].address.addressLine3 === currentLocation.address.addressLine3){ return;}
      
   }  
->>>>>>> af7955986abf863612dbd759c5956e718ef5363a
   storedLocation.push(currentLocation);
     localStorage.setItem(localStoredLocation,JSON.stringify(storedLocation));
 }
@@ -198,11 +191,7 @@ document.addEventListener("click",function(event){
 
 
 document.getElementById('previousChoice').addEventListener("click",function(){
-<<<<<<< HEAD
- // window.alert("prevous search clicked");
-=======
   // window.alert("prevous search clicked");
->>>>>>> af7955986abf863612dbd759c5956e718ef5363a
   var myStoredLocation = JSON.parse(localStorage.getItem(localStoredLocation));
   if(myStoredLocation === null) {return;}
   else{
@@ -225,20 +214,12 @@ document.getElementById('previousChoice').addEventListener("click",function(){
              var listAddress2 =document.createElement('li');
       
              listAddress2.textContent = myStoredLocation[i].address.addressLine2;
-<<<<<<< HEAD
-         //    window.alert( listAddress2.textContent);
-=======
   //           window.alert( listAddress2.textContent);
->>>>>>> af7955986abf863612dbd759c5956e718ef5363a
              addressListContainer.appendChild(listAddress2);
               
               var listAddress3 =document.createElement('li');
               listAddress3.textContent = myStoredLocation[i].address.addressLine3;
-<<<<<<< HEAD
-       //      window.alert( listAddress3.textContent);
-=======
     //         window.alert( listAddress3.textContent);
->>>>>>> af7955986abf863612dbd759c5956e718ef5363a
              addressListContainer.appendChild(listAddress3);
               var previousAddress = document.createElement('td');
 
@@ -292,10 +273,10 @@ function getWeatherInfo(cityName){
     if (response.ok) {
       response.json().then(function (data) {
           console.log(data);
-          var currentImageIcon = document.createElement('img');
+      //    var currentImageIcon = document.createElement('img');
           var makeImageIcon = data.current.weather[0].main;
           console.log("The weather main is "+makeImageIcon);
-          currentImageIcon.setAttribute("class",makeImageIcon);
+          document.querySelector("html").setAttribute("class",makeImageIcon);
       })
     }
   }) 
