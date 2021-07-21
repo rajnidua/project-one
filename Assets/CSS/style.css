@@ -1,8 +1,12 @@
 html { 
+<<<<<<< HEAD
         background-image: linear-gradient( rgb(0, 153, 255) , rgb(0, 47, 255)); 
        /* background: url(ClearImg.jpg) no-repeat center center fixed; */
     /*    background: url(./../IMAGES/ClearImg.jpg) no-repeat center center fixed; */
 
+=======
+    background: url(../IMAGES/ClearImg.jpg) no-repeat center center fixed; 
+>>>>>>> bbd0cd844176a6337ebd50be4dd78c1afbdb4bd7
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
