@@ -154,7 +154,8 @@ document.addEventListener("click",function(event){
       addressLine1 :'',
       addressLine2 :'',
       addressLine3 :''
-    }
+    },
+    //icon : 
   };
 
    currentLocation.name=event.target.parentNode.children[0].textContent;
@@ -163,25 +164,33 @@ document.addEventListener("click",function(event){
   currentLocation.address.addressLine3=event.target.parentNode.children[3].firstChild.children[2].textContent; 
   console.log("value for stored location name is "+currentLocation.name);
   console.log("value for stored address is "+currentLocation.address.addressLine1);
+  storedLocation = JSON.parse(localStorage.getItem(localStoredLocation));
+    if (storedLocation === null)
+    {
+      storedLocation = storedLocation || [];
+      storedLocation.push(currentLocation);
+      localStorage.setItem(localStoredLocation,JSON.stringify(storedLocation));
+      return;
+    }
 
-   /* for(var i = 0; i < storedLocation.length; i++){
-    storedLocation[i].name = currentLocation.name;
-    storedLocation[i].address.addressLine1 = currentLocation.address.addressLine1;
-    storedLocation[i].address.addressLine2 = currentLocation.address.addressLine2;
-    storedLocation[i].address.addressLine3 = currentLocation.address.addressLine3;
     
-    localStorage.setItem(localStoredLocation, JSON.stringify(storedLocation));
-    return null;
-  }  */
+    else {
+    for(var i = 0; i < storedLocation.length; i++){
+   if (storedLocation[i].name === currentLocation.name &&
+    storedLocation[i].address.addressLine1 === currentLocation.address.addressLine1 &&
+    storedLocation[i].address.addressLine2 === currentLocation.address.addressLine2 &&
+    storedLocation[i].address.addressLine3 === currentLocation.address.addressLine3){ return;}
+     
+  }  
   storedLocation.push(currentLocation);
     localStorage.setItem(localStoredLocation,JSON.stringify(storedLocation));
-  
+}
 
 },false);
 
 
 document.getElementById('previousChoice').addEventListener("click",function(){
-  window.alert("prevous search clicked");
+  // window.alert("prevous search clicked");
   var myStoredLocation = JSON.parse(localStorage.getItem(localStoredLocation));
   if(myStoredLocation === null){return;}
   else{
@@ -204,18 +213,23 @@ document.getElementById('previousChoice').addEventListener("click",function(){
              var listAddress2 =document.createElement('li');
       
              listAddress2.textContent = myStoredLocation[i].address.addressLine2;
-             window.alert( listAddress2.textContent);
+  //           window.alert( listAddress2.textContent);
              addressListContainer.appendChild(listAddress2);
               
               var listAddress3 =document.createElement('li');
               listAddress3.textContent = myStoredLocation[i].address.addressLine3;
-             window.alert( listAddress3.textContent);
+    //         window.alert( listAddress3.textContent);
              addressListContainer.appendChild(listAddress3);
               var previousAddress = document.createElement('td');
+
+              //var previousLocationIcon = document.createElement('img');
+
               
               
               previousAddress.appendChild(addressListContainer);
-              previousRow.appendChild(previousAddress);    
+              previousRow.appendChild(previousAddress);   
+              
+              
    
     previousTable.appendChild(previousRow);
    
