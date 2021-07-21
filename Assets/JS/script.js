@@ -20,14 +20,14 @@ imBored.addEventListener("click", function(){
   document.body.children[1].style.display = 'block';
 })
 
-checkboxChoice.addEventListener("click", function(){
+checkboxChoice.addEventListener("click", function(event){
   event.preventDefault();
   document.body.children[1].style.display = 'none';
   document.body.children[2].style.display = 'block';
   document.body.children[4].style.display = 'block';
 } )
 
-startOver.addEventListener("click", function(){
+startOver.addEventListener("click", function(event){
   event.preventDefault();
   document.body.children[0].style.display = 'block';
   document.body.children[3].style.display = 'none';
@@ -186,10 +186,10 @@ document.getElementById('previousChoice').addEventListener("click",function(){
   if(myStoredLocation === null){return;}
   else{
   var previousTable = document.createElement('table');
-  for (var i=0;i<storedLocation.length;i++){
+  for (var i=0;i<myStoredLocation.length;i++){
     var previousRow = document.createElement('tr');
     var previousName = document.createElement('td');
-    previousName.textContent = storedLocation[i].name;
+    previousName.textContent = myStoredLocation[i].name;
     previousRow.appendChild(previousName);
     
     
@@ -197,18 +197,18 @@ document.getElementById('previousChoice').addEventListener("click",function(){
     
       var listAddress1 =document.createElement('li');
       
-              listAddress1.textContent = storedLocation[i].address.addressLine1;
+              listAddress1.textContent = myStoredLocation[i].address.addressLine1;
               
               addressListContainer.appendChild(listAddress1);
              
              var listAddress2 =document.createElement('li');
       
-             listAddress2.textContent = storedLocation[i].address.addressLine2;
+             listAddress2.textContent = myStoredLocation[i].address.addressLine2;
              window.alert( listAddress2.textContent);
              addressListContainer.appendChild(listAddress2);
               
               var listAddress3 =document.createElement('li');
-              listAddress3.textContent = storedLocation[i].address.addressLine3;
+              listAddress3.textContent = myStoredLocation[i].address.addressLine3;
              window.alert( listAddress3.textContent);
              addressListContainer.appendChild(listAddress3);
               var previousAddress = document.createElement('td');
