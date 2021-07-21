@@ -11,7 +11,8 @@ var checkboxChoice = document.querySelector("#checkboxChoice");
 var previousChoice = document.querySelector("#previousChoice");
 var displayPreviousLocations = document.querySelector('#displayPreviousLocations');
 var startOver = document.querySelector("#startOver");
-var storedLocation = [];
+//var storedLocation = [];
+//var storedLocation = localStorage.getItem("stored_locations")
 var localStoredLocation = 'stored_locations';
 
 imBored.addEventListener("click", function(){
@@ -142,7 +143,7 @@ function getApi(paramLoc) {
       });
   }
 
-
+// Okay - here is where we have indicated that a search result has been selected.
    
 document.addEventListener("click",function(event){
   if(!event.target.matches('.save-btn')) return;
@@ -173,6 +174,7 @@ document.addEventListener("click",function(event){
     localStorage.setItem(localStoredLocation, JSON.stringify(storedLocation));
     return null;
   }  */
+  var storedLocation = localStorage.getItem(localStoredLocation);
   storedLocation.push(currentLocation);
     localStorage.setItem(localStoredLocation,JSON.stringify(storedLocation));
   
@@ -181,9 +183,9 @@ document.addEventListener("click",function(event){
 
 
 document.getElementById('previousChoice').addEventListener("click",function(){
-  window.alert("prevous search clicked");
+ // window.alert("prevous search clicked");
   var myStoredLocation = JSON.parse(localStorage.getItem(localStoredLocation));
-  if(myStoredLocation === null){return;}
+  if(myStoredLocation === null) {return;}
   else{
   var previousTable = document.createElement('table');
   for (var i=0;i<myStoredLocation.length;i++){
@@ -204,12 +206,12 @@ document.getElementById('previousChoice').addEventListener("click",function(){
              var listAddress2 =document.createElement('li');
       
              listAddress2.textContent = myStoredLocation[i].address.addressLine2;
-             window.alert( listAddress2.textContent);
+         //    window.alert( listAddress2.textContent);
              addressListContainer.appendChild(listAddress2);
               
               var listAddress3 =document.createElement('li');
               listAddress3.textContent = myStoredLocation[i].address.addressLine3;
-             window.alert( listAddress3.textContent);
+       //      window.alert( listAddress3.textContent);
              addressListContainer.appendChild(listAddress3);
               var previousAddress = document.createElement('td');
               
@@ -239,12 +241,13 @@ function getWeatherInfo(cityName){
             sendLatLng(data[0].lat, data[0].lon);
         });
       }else {
-        alert('Error: ' + response.statusText);
+     //   alert('Error: ' + response.statusText);
       }
     })
     .catch(function (error) {
-      alert('Unable to connect to GitHub');
+  //    alert('Unable to connect to GitHub');
     });
+    
 } 
   
   
