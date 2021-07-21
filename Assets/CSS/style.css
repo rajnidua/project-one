@@ -31,6 +31,17 @@ td {
     padding: 10px;
 }
 
+.save-btn{
+    border-radius: 9999px;
+    padding-left: calc(1em + .25em);
+    padding-right: calc(1em + .25em);
+    background-color: #00d1b2;
+    border-color: transparent;
+    color: #fff;
+    text-align: center;
+}
+
+
 .hello{
     text-align: center;
     display: block;
@@ -83,6 +94,18 @@ td {
 
 .Drizzle{
     background-image: url(./../IMAGES/Drizzle.jpg);
+    min-height: 100%;
+    min-width: 1024px;
+      
+    width: 100%;
+    height: auto;
+      
+    top: 0;
+    left: 0;
+}
+
+.Haze{
+    background-image: url(./../IMAGES/Haze.jpg);
     min-height: 100%;
     min-width: 1024px;
       

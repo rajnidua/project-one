@@ -23,6 +23,7 @@ imBored.addEventListener("click", function(){
 
 checkboxChoice.addEventListener("click", function(event){
   event.preventDefault();
+  document.body.children[1].children[9].children[0].remove();
   document.body.children[1].style.display = 'none';
   document.body.children[2].style.display = 'block';
   document.body.children[4].style.display = 'block';
@@ -148,7 +149,8 @@ function getApi(paramLoc) {
 document.addEventListener("click",function(event){
   if(!event.target.matches('.save-btn')) return;
   event.preventDefault();
-  event.target.parentNode.setAttribute("style","background-color:green;");
+  //event.target.parentNode.setAttribute("style","background-color:green;");
+  event.target.setAttribute("style","background-color:grey;");
   var currentLocation = {
     name : '',
     address : {
@@ -189,6 +191,12 @@ document.addEventListener("click",function(event){
 
 },false);
 
+// PLEASE REVIEW BELOW CODE == goal: to remove LocalStorage values so that 
+// Fresh values can be applied.
+
+// document.getElementById('clearPreviousChoice').addEventListener("click", function(){
+//   localStorage.setItem(localStoredLocation, "");
+// })
 
 document.getElementById('previousChoice').addEventListener("click",function(){
   // window.alert("prevous search clicked");
