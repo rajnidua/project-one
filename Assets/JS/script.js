@@ -24,7 +24,6 @@ imBored.addEventListener("click", function(){
 
 checkboxChoice.addEventListener("click", function(event){
   event.preventDefault();
-  //document.body.children[1].children[9].children[0].remove();
   document.getElementById("clearPreviousChoice").style.display = "none";
   document.body.children[1].style.display = 'none';
   document.body.children[2].style.display = 'block';

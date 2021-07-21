@@ -1,18 +1,13 @@
 html { 
-        background-image: linear-gradient( rgb(0, 153, 255) , rgb(0, 47, 255)); 
-       /* background: url(ClearImg.jpg) no-repeat center center fixed; */
-     /*  background: url(./../IMAGES/ClearImg.jpg) no-repeat center center fixed; */
-
+    background-image: linear-gradient( rgb(0, 153, 255) , rgb(0, 47, 255)); 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     min-height: 100%;
-    min-width: 1024px;
-      
+
     width: 100%;
     height: auto;
-      
     top: 0;
     left: 0;
   }
@@ -92,21 +87,14 @@ td {
 
 .Thunderstorm{
     background-image: url(./../IMAGES/Thunderstorm.jpg);
-    min-height: 100%;
-    min-width: 1024px;
-      
     width: 100%;
-    height: auto;
-      
+    height: auto; 
     top: 0;
     left: 0;
 }
 
 .Drizzle{
     background-image: url(./../IMAGES/Drizzle.jpg);
-    min-height: 100%;
-    min-width: 1024px;
-      
     width: 100%;
     height: auto;
       
@@ -116,9 +104,6 @@ td {
 
 .Haze{
     background-image: url(./../IMAGES/Haze.jpg);
-    min-height: 100%;
-    min-width: 1024px;
-      
     width: 100%;
     height: auto;
       
@@ -128,9 +113,6 @@ td {
 
 .Rain{
     background-image: url(./../IMAGES/Rain.jpg);
-    min-height: 100%;
-    min-width: 1024px;
-      
     width: 100%;
     height: auto;
       
@@ -140,9 +122,6 @@ td {
 
 .Snow{
     background-image: url(./../IMAGES/Snow.jpg);
-    min-height: 100%;
-    min-width: 1024px;
-      
     width: 100%;
     height: auto;
       
@@ -152,9 +131,6 @@ td {
 
 .Clear{
     background-image: url(./../IMAGES/ClearImg.jpg);
-    min-height: 100%;
-    min-width: 1024px;
-      
     width: 100%;
     height: auto;
       
@@ -165,11 +141,21 @@ td {
 .Clouds{
     background-image: url(./../IMAGES/Clouds.jpg);
     min-height: 100%;
-    min-width: 1024px;
       
     width: 100%;
     height: auto;
       
     top: 0;
     left: 0;
+}
+
+@media screen and (max-width: 767px) {
+   
+    body {
+        margin: 5%;
+    }
+
+    td {
+        padding: 0px;
+    }
 }
