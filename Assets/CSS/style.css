@@ -3,6 +3,10 @@ html {
        /* background: url(ClearImg.jpg) no-repeat center center fixed; */
     /*    background: url(./../IMAGES/ClearImg.jpg) no-repeat center center fixed; */
 
+<<<<<<< HEAD
+=======
+    background: url(../IMAGES/ClearImg.jpg) no-repeat center center fixed; 
+>>>>>>> d2ff9844409e841d71dc3791725cb974c75dd66b
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
