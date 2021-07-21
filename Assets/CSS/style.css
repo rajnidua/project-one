@@ -61,11 +61,26 @@ td {
 
 }
 
+.locationInput input{
+    border-radius: 9999px;
+    padding-left: calc(calc(.75em - 1px) + .375em);
+    padding-right: calc(calc(.75em - 1px) + .375em);
+    font-size: 1rem;
+    height: 2.5em;
+    justify-content: flex-start;
+    line-height: 1.5;
+    border-color: transparent;
+}
+
 .possibleChoices{
     text-align: center;
 
     display: none;
 
+}
+
+.possibleChoices h2 {
+    padding-bottom: 2%;
 }
 
 #prevSearch{
@@ -140,11 +155,40 @@ td {
 
 .Clouds{
     background-image: url(./../IMAGES/Clouds.jpg);
-    min-height: 100%;
-      
     width: 100%;
-    height: auto;
-      
+    height: auto;   
+    top: 0;
+    left: 0;
+}
+
+.Mist{
+    background-image: url(./../IMAGES/Mist.jpg);
+    width: 100%;
+    height: auto;   
+    top: 0;
+    left: 0;
+}
+
+.Dust{
+    background-image: url(./../IMAGES/Dust.jpg);
+    width: 100%;
+    height: auto;   
+    top: 0;
+    left: 0;
+}
+
+.Fog{
+    background-image: url(./../IMAGES/Fog.jpg);
+    width: 100%;
+    height: auto;   
+    top: 0;
+    left: 0;
+}
+
+.Tornado .Squall {
+    background-image: url(./../IMAGES/TornadoSquall.jpg);
+    width: 100%;
+    height: auto;   
     top: 0;
     left: 0;
 }

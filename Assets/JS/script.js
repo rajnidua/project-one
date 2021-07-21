@@ -28,7 +28,7 @@ checkboxChoice.addEventListener("click", function(event){
   document.body.children[1].style.display = 'none';
   document.body.children[2].style.display = 'block';
   document.body.children[4].style.display = 'block';
-    if (showCount ===1){
+    if (showCount > 0){
       document.body.children[1].children[7].children[0].remove();
       showCount = 0;
     }
@@ -58,6 +58,9 @@ var formSubmitHandler = function (event) {
 
 function getApi(paramLoc) {
   renderResultsName.textContent = "";
+  var resultsHeading = document.createElement("h2");
+  resultsHeading.textContent = "Here are some options!"
+  renderResultsName.appendChild(resultsHeading)
     var paramCategoryID="";   
     if(document.getElementById('chkActive').checked == true){
          paramCategoryID =  catActive+ "&query='Athletics & Sports,Gym / Fitness Center,Beach,Bike Trail'";

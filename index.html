@@ -49,14 +49,11 @@
       <h3>Thank you for answering those questions</h3>
       <form method="POST" id="locationPoint">
         <label for="enterLocation">Where would you like to go?</label>
-        <input id="enterLocation" type="text" name="text" placeholder="Adelaide">
+        <input id="enterLocation"  type="text" name="text" onfocus="this.value=''" placeholder="Adelaide">
         <button class="button is-primary is-rounded" id="submitLocation">Submit</button> 
       </form>
     </div>
-    <div class="possibleChoices" id="result-container-name">
-      <h2>Here are some options!</h2>
-      <p>You can save things you like or want to try at a later date</p>
-    </div>
+    <div class="possibleChoices" id="result-container-name"></div>
     <div id="prevSearch">
       <section>
         <h2>
