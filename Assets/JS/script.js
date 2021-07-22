@@ -277,7 +277,7 @@ document.getElementById('previousChoice').addEventListener("click",function(){
 
 //weather information for background images
 function getWeatherInfo(cityName){
-  var apiUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + cityName + '&limit=1&appid=75458c08fa474ac348f9900cc8ef4e74';
+  var apiUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=' + cityName + '&limit=1&appid=75458c08fa474ac348f9900cc8ef4e74';
   fetch(apiUrl)
     .then(function (response) {
       if (response.ok) {
