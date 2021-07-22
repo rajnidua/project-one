@@ -63,31 +63,25 @@ function getApi(paramLoc) {
     var paramCategoryID="";   
     if(document.getElementById('chkActive').checked == true){
          paramCategoryID =  catActive+ "&query='Athletics & Sports,Gym / Fitness Center,Beach,Bike Trail'";
-         console.log("The category ID that you selected is "+paramCategoryID);
          document.getElementById('chkActive').checked = false;
     }
 
     if(document.getElementById('chkCreative').checked == true){
         paramCategoryID = paramCategoryID  + catCreative+"&query='Amphitheater,Aquarium,Art Gallery,Museum,Movie Theater,Exhibit'";
         
-         console.log("The category ID that you selected is "+paramCategoryID);
          document.getElementById('chkCreative').checked = false;
     }
 
     if(document.getElementById('chkSocial').checked == true){
         paramCategoryID = paramCategoryID  + catSocial + "&query='Restaurant,Bar'";
-          console.log("The category ID that you selected is "+paramCategoryID);
          document.getElementById('chkSocial').checked = false;
     }
 
-    console.log(paramCategoryID);
-    console.log("The location that user selected is "+paramLoc);
     // Insert the API url to get a list of your locations according to the category selected
     var baseUrl = "https://api.foursquare.com/v2/venues/explore?client_id=RFZUCUXYVINZNS2TNEGFNI4JN3ANESOHMV0YFRVYNP2XV1H2&client_secret=13ILEVDA520W4OXTJMYOW10CAFEROVPKLYUPSFBV1JFBDLIR&v=20210701";
     var requestUrl = baseUrl + "&near=" + paramLoc  ;
     if(paramCategoryID !== ""){
          requestUrl = requestUrl + "&categoryID=" + paramCategoryID;
-         console.log("the request URL is "+requestUrl);
     }
     fetch(requestUrl)
       .then(function (response) {
@@ -95,13 +89,11 @@ function getApi(paramLoc) {
       })
       .then(function (data) {
         //looping over the fetch response and inserting the URL of your data into a table
-        console.log(data);
         var numberOfPlaces = data.response.groups[0].items.length;
         var nameArray = [];
         var addressArray=[] ;
         var imageArray=[];
         var contentTable = document.createElement('table');
-        console.log(numberOfPlaces);
           for(var i=0;i<numberOfPlaces;i++){
             var listContainer = document.createElement('tr');
             nameArray[i] = data.response.groups[0].items[i].venue.name;
@@ -114,10 +106,7 @@ function getApi(paramLoc) {
             
             liName.setAttribute("data-latitude", myLatitude);
             liName.setAttribute("data-longitude", myLongitude);
-            console.log("latitude is "+liName.dataset.latitude);
-            console.log("longitude is  "+liName.dataset.longitude);
             listContainer.appendChild(liName);
-            console.log("addressfor"+i+ data.response.groups[0].items[i].venue.location.formattedAddress[0]) ; 
             var liAddress = document.createElement('td');
             var addressListContainer = document.createElement('ul');
             //get the length of the formatted address array
@@ -179,7 +168,6 @@ document.addEventListener("click",function(event){
 
    currentLocation.name=event.target.parentNode.children[0].textContent;
    var addressLength = event.target.parentNode.children[1].firstChild.children.length;
-   console.log("address length is "+addressLength );
    if(addressLength>3){
      addressLength=3;
    }
@@ -196,8 +184,6 @@ document.addEventListener("click",function(event){
    }
 
   }
-  console.log("value for stored location name is "+currentLocation.name);
-  console.log("value for stored address is "+currentLocation.address.addressLine1);
   storedLocation = JSON.parse(localStorage.getItem(localStoredLocation));
     if (storedLocation === null)
     {
@@ -233,7 +219,7 @@ document.addEventListener("click",function(event){
       document.getElementById('clearPreviousChoice').disabled = true;
     }
    else{
-     window.alert("No Locations found based on previous searches");
+    // window.alert("No Locations found based on previous searches");
    }
  })
 
@@ -245,8 +231,9 @@ document.getElementById('previousChoice').addEventListener("click",function(){
  
   var myStoredLocation = JSON.parse(localStorage.getItem(localStoredLocation));
   if(myStoredLocation === null) {
-     
-      window.alert("No Locations found based on previous searches");
+
+      
+      displayPreviousLocations.textContent="There are no previous searches.";
       document.getElementById('clearPreviousChoice').style.display = "none";
       document.getElementById('clearPreviousChoice').disabled = true;
     return;}
@@ -318,10 +305,8 @@ function getWeatherInfo(cityName){
     fetch(myforecastapiUrl).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
-          console.log(data);
       
           var makeImageIcon = data.current.weather[0].main;
-          console.log("The weather main is "+makeImageIcon);
           
           document.querySelector("html").setAttribute("class",makeImageIcon);
          
