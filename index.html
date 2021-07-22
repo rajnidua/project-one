@@ -12,6 +12,7 @@
     <title>Project One</title>
   </head>
   <body>
+    
     <header class="hello">
       <h2>
         Hello!
@@ -31,38 +32,25 @@
           I would like to do something ....
       </h3>
       <label class="radio" id="activityType">
-        <input type="radio" id="chkActive">
+        <input type="radio" name ="feelLike" id="chkActive" checked>
         Active
-      </label>
-      <input type="radio" id="chkCreative">
+      <input type="radio" name ="feelLike" id="chkCreative">
         Creative
-      </label>
-        <input type="radio" id="chkSocial">
+        <input type="radio" name ="feelLike" id="chkSocial">
         Social
       </label>
       <button class="button is-primary is-rounded" id="checkboxChoice">Yeah!</button>
-      <button class="button is-primary is-rounded" id="previousChoice">Somewhere Familiar??</button>
+      <p> Or would you like to do something </p>
+      <button class="button is-primary is-rounded" id="previousChoice">Familiar?</button>
       <div id="displayPreviousLocations"></div>
+      <button class="button is-primary is-rounded" id="clearPreviousChoice">Actually, let's clear these.</button>
+
     </div>
-   <!------<div id="showAnswerStatus">
-        <h4 id="answerStatus">Okay... how do these options sound?
-        </h4>
-        <label class="checkbox" id="activityExamples">
-            <input type="checkbox">
-            Active
-          </label>
-          <input type="checkbox">
-            Creative
-          </label>
-            <input type="checkbox">
-            Social
-          </label>
-      </div> ----------->
     <div class="locationInput" id="whereToGo">
       <h3>Thank you for answering those questions</h3>
       <form method="POST" id="locationPoint">
         <label for="enterLocation">Where would you like to go?</label>
-        <input id="enterLocation" type="text" name="text" placeholder="Adelaide">
+        <input id="enterLocation"  type="text" name="text" value="Adelaide" onfocus="this.value='Adelaide'" placeholder="Adelaide">
         <button class="button is-primary is-rounded" id="submitLocation">Submit</button> 
       </form>
     </div>
@@ -70,16 +58,17 @@
     <div id="prevSearch">
       <section>
         <h2>
-            Or would you like to go somewhere familiar?
+            Would you like to reload a previous search?
         </h2>
         <ol id="prevLocations">
         </ol>
-        <button class="button is-primary is-rounded" id=clearLocations>Clear Locations</button>
+        <!--<button class="button is-primary is-rounded" id=clearLocations>Clear Locations</button>-->
       </section>
     </div>
     <div class="restart">
-      <h3>Do you want to <button class="button is-link is-rounded" id="startOver">Start Over?</button></h3>
+      <h3>Do you want to <button class="button is-primary is-rounded" id="startOver">Start Over?</button></h3>
     </div>
+  
     <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" data-auto-replace-svg="nest"></script>
     <script src="./Assets/JS/script.js"></script>
   </body>
