@@ -10,9 +10,11 @@ var checkboxChoice = document.querySelector("#checkboxChoice");
 var previousChoice = document.querySelector("#previousChoice");
 var displayPreviousLocations = document.querySelector('#displayPreviousLocations');
 var startOver = document.querySelector("#startOver");
-
 var localStoredLocation = 'stored_locations';
 var showCount = 0;
+var errorLbl = document.getElementById("errorLbl");
+errorLbl.style.visibility="hidden";
+ 
 
 imBored.addEventListener("click", function(){
   document.body.children[0].style.display = 'none';
@@ -44,23 +46,38 @@ startOver.addEventListener("click", function(event){
 })
 
 var formSubmitHandler = function (event) {
-      event.preventDefault();
-      document.body.children[2].style.display = 'none';
-      document.body.children[4].style.display = 'none';
-      document.body.children[3].style.display = 'block';
-      document.body.children[5].style.display = 'block';
+   
+  event.preventDefault();
+  errorLbl.style.visibility="hidden";
+  
       var paramLoc = document.getElementById("enterLocation").value.trim();
       
-      getWeatherInfo(paramLoc);
-      getApi(paramLoc);
+      if (paramLoc === ""){
+          errorLbl.innerHTML = "Please enter a location to continue";
+          errorLbl.style.color="Red";
+          errorLbl.style.visibility="visible";
+      }
+
+      else {
+      
+            getStartInfo(paramLoc);
+        //     getApi(paramLoc);       
+               
+      }
     }
 
 function getApi(paramLoc) {
   renderResultsName.textContent = "";
-  var resultsHeading = document.createElement("h2");
-  resultsHeading.textContent = "Here are some options!"
-  renderResultsName.appendChild(resultsHeading)
-    var paramCategoryID="";   
+  document.body.children[2].style.display = 'none';
+  document.body.children[4].style.display = 'none';
+  document.body.children[3].style.display = 'block';
+  document.body.children[5].style.display = 'block';
+
+var resultsHeading = document.createElement('h2');
+resultsHeading.textContent = "Loading  options...";
+renderResultsName.appendChild(resultsHeading);
+
+  var paramCategoryID="";   
     if(document.getElementById('chkActive').checked == true){
          paramCategoryID =  catActive+ "&query='Athletics & Sports,Gym / Fitness Center,Beach,Bike Trail'";
          document.getElementById('chkActive').checked = false;
@@ -83,17 +100,33 @@ function getApi(paramLoc) {
     if(paramCategoryID !== ""){
          requestUrl = requestUrl + "&categoryID=" + paramCategoryID;
     }
-    fetch(requestUrl)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (data) {
+ fetch(requestUrl)
+     .then(function (response) {
+      
+        if (response.ok) {
+
+        return response.clone().json();
+        }
+        else {
+          console.log('httpError:' + response.status);
+           
+         
+          return Promise.reject(response); 
+      }
+      }).then(function (data) {
+
+         if (data.response !== null){
         //looping over the fetch response and inserting the URL of your data into a table
+        
         var numberOfPlaces = data.response.groups[0].items.length;
+          if (numberOfPlaces === 0){
+            resultsHeading.textContent = "No recommended places for the location: " + data.response.geocode.where;
+            throw new Error("No recommended places for location: " + data.response.geocode.displayString);    
+          }
         var nameArray = [];
-        var addressArray=[] ;
-        var imageArray=[];
         var contentTable = document.createElement('table');
+ 
+         
           for(var i=0;i<numberOfPlaces;i++){
             var listContainer = document.createElement('tr');
             nameArray[i] = data.response.groups[0].items[i].venue.name;
@@ -147,8 +180,21 @@ function getApi(paramLoc) {
           
         }
         renderResultsName.appendChild(contentTable);
-      });
-  }
+        resultsHeading.textContent = "Here are some options!";
+      }
+    
+    else{
+     
+      throw new Error("Error in response" + data.meta.errorType + data.meta.errorDetail);
+    }
+  })
+      .catch(function (error) {
+        // alert('Unable to connect');
+          console.log(error);
+         });
+      
+          
+    }
 
 
 //saves the record in local storage when save button is clicked   
@@ -275,28 +321,76 @@ document.getElementById('previousChoice').addEventListener("click",function(){
 })
 
 
+ 
+ 
+
+
 //weather information for background images
-function getWeatherInfo(cityName){
+ function getStartInfo(cityName){
   var apiUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=' + cityName + '&limit=1&appid=75458c08fa474ac348f9900cc8ef4e74';
   fetch(apiUrl)
-    .then(function (response) {
-      if (response.ok) {
-        response.json().then(function (data) {
-            
-                       
-            sendLatLng(data[0].lat, data[0].lon);
-        });
-      }else {
-        alert('Error: ' + response.statusText);
+  .then(function(response){
+  if (response.ok) {
+      var contentLength = response.headers.get("content-length");
+      if(contentLength && contentLength > 2){ 
+      return response.clone().json();	
       }
-    })
-    .catch(function (error) {
-     alert('Unable to connect');
-    });
+        
+       errorLbl.innerHTML = "Entered location is not valid. Try again with a new location";
+       errorLbl.style.color="Red";
+       errorLbl.style.visibility="visible";
+       return Promise.reject(response);
+	  } else {
+      
+		return Promise.reject(response);
+	}
+}) .then(function(data){
+  console.log(data.length);
+  if (data.length > 0 )
+  {
+    var myLatitude = data[0].lat;
+    var myLongitude = data[0].lon;
+    var myforecastapiUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat='+myLatitude+'&lon='+myLongitude+'&cnt='+1 +  '&appid=fabc0f3ee2df47776dc03eed2998269f';
+    // Fetch forcast url api to get image icon
+    return fetch(myforecastapiUrl);
+  }
+}).then(function(response){
+  if (response.ok){
+      return response.clone().json();
+  }
+  else {
+   
+    return Promise.reject(response);
+  }
+}).then(function(icondata){
+  var makeImageIcon = icondata.current.weather[0].main;
+          
+  document.querySelector("html").setAttribute("class",makeImageIcon);
+
+ }).then(function(callAPI)
+ {
+  errorLbl.style.visibility="hidden";
+ 
+      var paramLoc = document.getElementById("enterLocation").value.trim();
+      
+      if (paramLoc === ""){
+          errorLbl.innerHTML = "Please enter location to continue";
+          errorLbl.style.color="Red";
+          errorLbl.style.visibility="visible";
+          return Promise.reject(response);
+      }
+
+   getApi(paramLoc);
+ }
+ )
+ .catch(function(error){
     
+    console.log(error);
+ });
+// end of getStartInfo() 
 } 
-  
-  
+
+/*
  //getting class for background image 
   function sendLatLng(myLatitude,myLongitude){
   
@@ -312,9 +406,17 @@ function getWeatherInfo(cityName){
          
       })
     }
+    else{
+      throw new Error('Something went wrong');
+    }
   }) 
+  
+  .catch(function (error) {
+    // alert('Unable to connect');
+      console.log(error);
+     });
 }
 
-
+*/
  
 userFormEl.addEventListener('submit', formSubmitHandler);
