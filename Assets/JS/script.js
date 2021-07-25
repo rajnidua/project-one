@@ -12,30 +12,26 @@ var displayPreviousLocations = document.querySelector('#displayPreviousLocations
 var startOver = document.querySelector("#startOver");
 var localStoredLocation = 'stored_locations';
 var showCount = 0;
-var errorLbl = document.getElementById("errorLbl");
-errorLbl.style.visibility="hidden";
+var errorLbl = document.getElementById("errorLbl"); 
+errorLbl.style.visibility="hidden"; // to keep label hidden used to show error messages to user
  
-
+//hide the first screen and show the next screen,also hide the previous locations
 imBored.addEventListener("click", function(){
   document.body.children[0].style.display = 'none';
   document.body.children[1].style.display = 'block';
   displayPreviousLocations.textContent="";
 })
 
+//show the choices screen,  previous searches button and hide the rest
 checkboxChoice.addEventListener("click", function(event){
   event.preventDefault();
   document.getElementById("clearPreviousChoice").style.display = "none";
   document.body.children[1].style.display = 'none';
   document.body.children[2].style.display = 'block';
   document.body.children[4].style.display = 'block';
-     /* if (showCount > 0 ){
-       if(document.body.children[1].children[7].length!==null){
-      document.body.children[1].children[7].children[0].remove();
-      showCount = 0;
-       } */
-    //} 
 } )
 
+//reset everything on clicking start over button
 startOver.addEventListener("click", function(event){
   event.preventDefault();
   document.body.children[0].style.display = 'block';
@@ -48,25 +44,28 @@ startOver.addEventListener("click", function(event){
 var formSubmitHandler = function (event) {
    
   event.preventDefault();
-  errorLbl.style.visibility="hidden";
-  
+  // hidden when submit button processing starts to clear previous error messages
+  errorLbl.style.visibility="hidden"; 
+    
       var paramLoc = document.getElementById("enterLocation").value.trim();
-      
+      //if user presses submit without entering a location
       if (paramLoc === ""){
+
+        // show message to user to enter a location to continue
           errorLbl.innerHTML = "Please enter a location to continue";
           errorLbl.style.color="Red";
           errorLbl.style.visibility="visible";
       }
-
+      //else call the getStartInfo function with paramLoc as argument
       else {
       
             getStartInfo(paramLoc);
         //     getApi(paramLoc);       
-               
       }
     }
 
 function getApi(paramLoc) {
+
   renderResultsName.textContent = "";
   document.body.children[2].style.display = 'none';
   document.body.children[4].style.display = 'none';
@@ -102,16 +101,16 @@ renderResultsName.appendChild(resultsHeading);
     }
  fetch(requestUrl)
      .then(function (response) {
-      
+      //check the response from foursquare api
         if (response.ok) {
 
         return response.clone().json();
         }
         else {
-          console.log('httpError:' + response.status);
-           
-         
-          return Promise.reject(response); 
+          resultsHeading.textContent = "Something went wrong. Please try again with another location ";          
+        
+          throw (new Error(response.status));
+          //return Promise.reject(new Error(response.status)); 
       }
       }).then(function (data) {
 
@@ -124,6 +123,7 @@ renderResultsName.appendChild(resultsHeading);
             throw new Error("No recommended places for location: " + data.response.geocode.displayString);    
           }
         var nameArray = [];
+        //create a table to display the location name,address, icon and save button
         var contentTable = document.createElement('table');
  
          
@@ -175,7 +175,7 @@ renderResultsName.appendChild(resultsHeading);
             saveButton.setAttribute("id",i);
             saveButton.setAttribute("class","save-btn");
         
-            
+                       
             contentTable.appendChild(listContainer);
           
         }
@@ -184,14 +184,12 @@ renderResultsName.appendChild(resultsHeading);
       }
     
     else{
-     
-      throw new Error("Error in response" + data.meta.errorType + data.meta.errorDetail);
+     throw new Error("Error in response" + data.meta.errorType + data.meta.errorDetail);
     }
   })
-      .catch(function (error) {
-        // alert('Unable to connect');
+       .catch(function (error) {
           console.log(error);
-         });
+         }); 
       
           
     }
@@ -211,7 +209,7 @@ document.addEventListener("click",function(event){
     },
     
   };
-
+//check if the address for particular index exists or not,if yes then assign the value
    currentLocation.name=event.target.parentNode.children[0].textContent;
    var addressLength = event.target.parentNode.children[1].firstChild.children.length;
    if(addressLength>3){
@@ -328,26 +326,37 @@ document.getElementById('previousChoice').addEventListener("click",function(){
 //weather information for background images
  function getStartInfo(cityName){
   var apiUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=' + cityName + '&limit=1&appid=75458c08fa474ac348f9900cc8ef4e74';
+  //use conditional statements on response in .then to check the validity of city name entered by user
   fetch(apiUrl)
   .then(function(response){
-  if (response.ok) {
-      var contentLength = response.headers.get("content-length");
-      if(contentLength && contentLength > 2){ 
+  if (response.ok) 
+  {
+    var contentLength = response.headers.get("content-length");
+    // check on content length to validate the response based on input location
+    if(contentLength && contentLength > 2)
+    {  
+      // using clone to create a clone of json as it only allows once to read json object
       return response.clone().json();	
-      }
+    }
         
-       errorLbl.innerHTML = "Entered location is not valid. Try again with a new location";
-       errorLbl.style.color="Red";
-       errorLbl.style.visibility="visible";
-       return Promise.reject(response);
-	  } else {
-      
+      errorLbl.innerHTML = "Entered location is not valid. Try again with a new location";
+      errorLbl.style.color="Red";
+      errorLbl.style.visibility="visible";
+      return Promise.reject(response);
+       //if response header is 2 or less then reject response and display error message
+	} 
+  else 
+  {
+    errorLbl.innerHTML = "Entered location is not valid. Try again with a new location";
+    errorLbl.style.color="Red";
+    errorLbl.style.visibility="visible";
 		return Promise.reject(response);
-	}
+	}//if the city name is valid then get latitude and longitude from the data
 }) .then(function(data){
-  console.log(data.length);
+  console.log(data);
   if (data.length > 0 )
   {
+    console.log("The length of data is: "+data.length+"and latitude longitude is "+data[0].lat+" long is "+data[0].lon);
     var myLatitude = data[0].lat;
     var myLongitude = data[0].lon;
     var myforecastapiUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat='+myLatitude+'&lon='+myLongitude+'&cnt='+1 +  '&appid=fabc0f3ee2df47776dc03eed2998269f';
@@ -355,11 +364,20 @@ document.getElementById('previousChoice').addEventListener("click",function(){
     return fetch(myforecastapiUrl);
   }
 }).then(function(response){
+  console.log("response status is "+response.status);
+  if(response.status!== 400){
   if (response.ok){
+    
       return response.clone().json();
   }
   else {
+   console.log("I am in the else here");
    
+    return Promise.reject(response);
+  }}
+  else{
+    console.log("I am in the else here");
+    
     return Promise.reject(response);
   }
 }).then(function(icondata){
