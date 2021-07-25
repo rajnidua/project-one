@@ -86,7 +86,7 @@ function getApi(paramLoc) {
 
     // Insert the API url to get a list of your locations according to the category selected
     var baseUrl = "https://api.foursquare.com/v2/venues/explore?client_id=RFZUCUXYVINZNS2TNEGFNI4JN3ANESOHMV0YFRVYNP2XV1H2&client_secret=13ILEVDA520W4OXTJMYOW10CAFEROVPKLYUPSFBV1JFBDLIR&v=20210701";
-    var requestUrl = baseUrl + "&near=" + paramLoc + ', AU' + '&radius=20'  ;
+    var requestUrl = baseUrl + "&near=" + paramLoc  + '&radius=20'  ;
     if(paramCategoryID !== ""){
          requestUrl = requestUrl + "&categoryID=" + paramCategoryID;
     }
@@ -338,7 +338,7 @@ document.getElementById('previousChoice').addEventListener("click",function(){
 
 //weather information for background images
  function getStartInfo(cityName){
-  var apiUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=' + cityName + ', AU&limit=1&appid=75458c08fa474ac348f9900cc8ef4e74';
+  var apiUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=' + cityName + '&limit=1&appid=75458c08fa474ac348f9900cc8ef4e74';
   //use conditional statements on response in .then to check the validity of city name entered by user
   fetch(apiUrl)
   .then(function(response){
