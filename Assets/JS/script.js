@@ -66,19 +66,10 @@ var formSubmitHandler = function (event) {
 
 function getApi(paramLoc) {
 
-  renderResultsName.textContent = "";
-  document.body.children[2].style.display = 'none';
-  document.body.children[4].style.display = 'none';
-  document.body.children[3].style.display = 'block';
-  document.body.children[5].style.display = 'block';
-
-var resultsHeading = document.createElement('h2');
-resultsHeading.textContent = "Loading  options...";
-renderResultsName.appendChild(resultsHeading);
-
+  
   var paramCategoryID="";   
     if(document.getElementById('chkActive').checked == true){
-         paramCategoryID =  catActive+ "&query='Athletics & Sports,Gym / Fitness Center,Beach,Bike Trail'";
+         paramCategoryID =  catActive+ "&query='playground,Athletics,Sports,Gym ,Fitness Center,Beach,Bike Trail'";
          document.getElementById('chkActive').checked = false;
     }
 
@@ -95,34 +86,56 @@ renderResultsName.appendChild(resultsHeading);
 
     // Insert the API url to get a list of your locations according to the category selected
     var baseUrl = "https://api.foursquare.com/v2/venues/explore?client_id=RFZUCUXYVINZNS2TNEGFNI4JN3ANESOHMV0YFRVYNP2XV1H2&client_secret=13ILEVDA520W4OXTJMYOW10CAFEROVPKLYUPSFBV1JFBDLIR&v=20210701";
-    var requestUrl = baseUrl + "&near=" + paramLoc  ;
+    var requestUrl = baseUrl + "&near=" + paramLoc + ', AU' + '&radius=20'  ;
     if(paramCategoryID !== ""){
          requestUrl = requestUrl + "&categoryID=" + paramCategoryID;
     }
  fetch(requestUrl)
      .then(function (response) {
       //check the response from foursquare api
-        if (response.ok) {
+        //if (response.ok) {
 
         return response.clone().json();
-        }
+      /*  
+      }
         else {
-          resultsHeading.textContent = "Something went wrong. Please try again with another location ";          
+
+          // resultsHeading.textContent = "Something went wrong. Please try again with another location ";          
         
           throw (new Error(response.status));
           //return Promise.reject(new Error(response.status)); 
-      }
+      }*/
       }).then(function (data) {
+        if (data.meta.code >= 400){
+          errorLbl.innerHTML = data.meta.errorDetail;
+          errorLbl.style.color="Red";
+          errorLbl.style.visibility="visible";
+          throw new Error(data.meta.code + data.meta.errorDetail);
 
+        }
          if (data.response !== null){
         //looping over the fetch response and inserting the URL of your data into a table
-        
+       
         var numberOfPlaces = data.response.groups[0].items.length;
           if (numberOfPlaces === 0){
-            resultsHeading.textContent = "No recommended places for the location: " + data.response.geocode.where;
+            errorLbl.innerHTML = "No recommended places for the location: " + data.response.geocode.where;
+            errorLbl.style.color="Red";
+            errorLbl.style.visibility="visible";
+           
+         //   resultsHeading.textContent = "No recommended places for the location: " + data.response.geocode.where;
             throw new Error("No recommended places for location: " + data.response.geocode.displayString);    
           }
-        var nameArray = [];
+          renderResultsName.textContent = "";
+          document.body.children[2].style.display = 'none';
+          document.body.children[4].style.display = 'none';
+          document.body.children[3].style.display = 'block';
+          document.body.children[5].style.display = 'block';
+        
+        var resultsHeading = document.createElement('h2');
+        resultsHeading.textContent = "Loading  options...";
+        renderResultsName.appendChild(resultsHeading);
+        
+          var nameArray = [];
         //create a table to display the location name,address, icon and save button
         var contentTable = document.createElement('table');
  
@@ -325,7 +338,7 @@ document.getElementById('previousChoice').addEventListener("click",function(){
 
 //weather information for background images
  function getStartInfo(cityName){
-  var apiUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=' + cityName + '&limit=1&appid=75458c08fa474ac348f9900cc8ef4e74';
+  var apiUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=' + cityName + ', AU&limit=1&appid=75458c08fa474ac348f9900cc8ef4e74';
   //use conditional statements on response in .then to check the validity of city name entered by user
   fetch(apiUrl)
   .then(function(response){
@@ -385,12 +398,11 @@ document.getElementById('previousChoice').addEventListener("click",function(){
           
   document.querySelector("html").setAttribute("class",makeImageIcon);
 
- }).then(function(callAPI)
- {
+  
   errorLbl.style.visibility="hidden";
  
-      var paramLoc = document.getElementById("enterLocation").value.trim();
-      
+       var paramLoc = document.getElementById("enterLocation").value.trim();
+    //  var paramLoc = icondata.lat + ',' + icondata.lon;
       if (paramLoc === ""){
           errorLbl.innerHTML = "Please enter location to continue";
           errorLbl.style.color="Red";
@@ -399,8 +411,7 @@ document.getElementById('previousChoice').addEventListener("click",function(){
       }
 
    getApi(paramLoc);
- }
- )
+ })
  .catch(function(error){
     
     console.log(error);
@@ -408,33 +419,6 @@ document.getElementById('previousChoice').addEventListener("click",function(){
 // end of getStartInfo() 
 } 
 
-/*
- //getting class for background image 
-  function sendLatLng(myLatitude,myLongitude){
-  
-  var myforecastapiUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat='+myLatitude+'&lon='+myLongitude+'&cnt='+1 +  '&appid=fabc0f3ee2df47776dc03eed2998269f';
-  
-    fetch(myforecastapiUrl).then(function (response) {
-    if (response.ok) {
-      response.json().then(function (data) {
-      
-          var makeImageIcon = data.current.weather[0].main;
-          
-          document.querySelector("html").setAttribute("class",makeImageIcon);
-         
-      })
-    }
-    else{
-      throw new Error('Something went wrong');
-    }
-  }) 
-  
-  .catch(function (error) {
-    // alert('Unable to connect');
-      console.log(error);
-     });
-}
 
-*/
  
 userFormEl.addEventListener('submit', formSubmitHandler);
