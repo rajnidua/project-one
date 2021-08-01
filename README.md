@@ -38,7 +38,7 @@ https://rajnidua.github.io/project-one/
 
 &copy;  Rajni Dua
 
-Licensed under the [MIT License](LICENCE).
+Licensed under the [MIT License](LICENSE).
 
 
 
