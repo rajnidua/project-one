@@ -34,5 +34,11 @@ https://rajnidua.github.io/project-one/
 ![image](https://user-images.githubusercontent.com/83541287/126736052-cf91e417-e17f-4fcb-9e87-2eeba069d551.png)
 
 
+## Lisence & copyright
+
+&copy;  Rajni Dua
+
+Licensed under the [MIT License](LICENSE).
+
 
 
